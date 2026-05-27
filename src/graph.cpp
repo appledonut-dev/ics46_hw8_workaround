@@ -4,7 +4,6 @@ using namespace std;
 
 void error(string msg) {
     cerr << msg << endl;
-    exit(-1);
 }
 
 // template
