@@ -133,14 +133,14 @@ VertexList dfs(const Graph& graph, Vertex startVertex) {
     stack<Vertex> search_list;
     traversal.push_back(startVertex);
     found[startVertex] = true;
-    for (auto e: graph.edges_from(startVertex)) search_list.push(e);
     while (!search_list.empty()) {
         Vertex curr = search_list.top();
         search_list.pop();
-        if (!found[curr]) {
-            traversal.push_back(curr);
-            found[curr] = true;
-            for (auto e: graph.edges_from(curr)) search_list.push(e);
+        for (auto e: graph.edges_from(curr)) {
+            if (!found[e]) {
+                found[e] = true;
+                search_list.push(e);
+            }
         }
     }
     return traversal;
