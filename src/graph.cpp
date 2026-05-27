@@ -131,15 +131,16 @@ VertexList dfs(const Graph& graph, Vertex startVertex) {
     VertexList traversal;
     vector<bool> found(graph.numVertices, false);
     stack<Vertex> search_list;
-    traversal.push_back(startVertex);
+    search_list.push(startVertex);
     found[startVertex] = true;
     while (!search_list.empty()) {
         Vertex curr = search_list.top();
+        traversal.push_back(curr);
         search_list.pop();
-        for (auto e: graph.edges_from(curr)) {
+        for (auto e : graph.edges_from(curr)) {
             if (!found[e]) {
-                found[e] = true;
                 search_list.push(e);
+                found[e] = true;
             }
         }
     }
