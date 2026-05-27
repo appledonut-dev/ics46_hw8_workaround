@@ -159,7 +159,9 @@ VertexList bfs(const Graph& graph, Vertex startVertex) {
         if (!found[curr]) {
             traversal.push_back(curr);
             found[curr] = true;
-            for (auto e: graph.edges_from(curr)) search_list.push(e);
+            for (auto e: graph.edges_from(curr)) {
+                if (!found[e]) search_list.push(e);
+            }
         }
     }
     return traversal;
